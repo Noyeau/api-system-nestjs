@@ -2,16 +2,18 @@
 
 export const environment: any = {
     production: true,
-    apiCode:"system",
+    apiCode: "system",
     bddConfig: {
-        type: 'mysql',
-        host: '192.168.1.15',
-        port: 3306,
-        username: "root",
-        password: "NoyeauP@ssword",
-        database: "noyeau_system",
-        entities: ["dist/**/*.entity{.ts,.js}"],
-        synchronize: true,
+        type: process.env.dbType || "mysql",
+        host: process.env.dbHost || "",
+        port: +process.env.dbPort || 3306,
+        username: process.env.dbUsername || "root",
+        password: process.env.dbPassword || "",
+        database: process.env.dbDatabase || "noyeau_user",
+        entities: [
+            process.env.dbEntities || "src/entity/**/*.ts"
+        ],
+        synchronize: (process.env.dbSynchronize == 'true' ? true : false) || false
     },
-    apiKeyCode:'appNoyeau',
+    apiKeyCode: process.env.apiKeyCode || 'appNoyeau',
 };

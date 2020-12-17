@@ -32,7 +32,7 @@ async function bootstrap() {
     next();
   });
 
-  await app.listen(3000).then((a) => {
+  await app.listen(process.env.PORT || 3000).then((a) => {
     console.log("api start on port : ", 3000)
   });
 }
